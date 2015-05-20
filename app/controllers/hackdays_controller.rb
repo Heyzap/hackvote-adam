@@ -2,6 +2,7 @@ class HackdaysController < ApplicationController
 	
 	def create
 		@hackday = Hackday.new(hackday_params)
+		@hackday.save
 		redirect_to @hackday
 	end
 
@@ -32,7 +33,7 @@ class HackdaysController < ApplicationController
 
 	private
 		def hackday_params
-			params.require(:hackday).permit(:title)	
+			params.require(:hackday).permit(:id, :title)	
 		end
 
 
