@@ -1,13 +1,15 @@
 class HackdaysController < ApplicationController
 	
-	
 	def create
 		@hackday = Hackday.new(hackday_params)
 		redirect_to @hackday
 	end
 
 	def index
-		@hackdays = Hackday.all	
+		@new_hackday = Hackday.new
+		@hackdays = Hackday.all
+		@current_hackday = @hackdays.last
+		@past_hackdays = @hackdays.first (@hackdays.size - 1)
 	end
 
 
