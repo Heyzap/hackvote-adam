@@ -1,5 +1,8 @@
 <% provide(:title, @hackday.title) %>
 <div class = "row">
 
-
+	<% unless @hackday.closed? %>
+		<%= render 'project_form' %>
+	<% end %> 
+	<%= render 'projects' %>
 </div>
