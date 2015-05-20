@@ -16,11 +16,13 @@ class HackdaysControllerTest < ActionController::TestCase
 
   test "should get show" do
 
+
+  	get :show, id: @may
+  	assert_response :success
+  	debugger
   	get :show, id: @june
   	assert_response :success
   	
-  	get :show, id: @may
-  	assert_response :success
   end
 
 

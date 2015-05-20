@@ -13,7 +13,6 @@ class HackdaysController < ApplicationController
 		@past_hackdays = @hackdays.first (@hackdays.size - 1)
 	end
 
-
 	def show
 		@hackday = Hackday.find(params[:id])
 		if @hackday.closed?
@@ -29,7 +28,6 @@ class HackdaysController < ApplicationController
 		@hackday.save
 		redirect_to @hackday
 	end
-
 
 	private
 		def hackday_params
