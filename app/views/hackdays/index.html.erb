@@ -5,33 +5,33 @@
 </div>
 <div class = "col-md-6">
 
-	<div class = "row">
-	<!-- row for creating new hackday -->
-		<div class = "col-md-6 col-md-offset-3">
-			<%= form_for(@new_hackday) do |f| %>
-				<%= f.label "new hackday title" %>
-				<%= f.text_field :title, class: 'form_control' %>
-				<%= f.submit "Create hackday", class: "btn btn-primary" %>
-			<% end %> 	
-		</div>
-	</div>
+  <div class = "row">
+  <!-- row for creating new hackday -->
+    <div class = "col-md-6 col-md-offset-3">
+      <%= form_for(@new_hackday) do |f| %>
+        <%= f.label "new hackday title" %>
+        <%= f.text_field :title, class: 'form_control' %>
+        <%= f.submit "Create hackday", class: "btn btn-primary" %>
+      <% end %>   
+    </div>
+  </div>
 
-	<div class = "row">
-		<!-- row for current hackday -->
-		<div class = "col-md-6 col-md-offset-3">
-			<h1> Current Hackday </h1>
-			<h4> <%= render @current_hackday if !@current_hackday.nil? %> </h4>
-		</div>
+  <div class = "row">
+    <!-- row for current hackday -->
+    <div class = "col-md-6 col-md-offset-3">
+      <h1> Current Hackday </h1>
+      <h4> <%= render @current_hackday if !@current_hackday.nil? %> </h4>
+    </div>
 
-	</div>
+  </div>
 
 
-	<div class = "row">
-		<!-- row for past hackday -->
-		<div class = "col-md-6 col-md-offset-3">
-			<h1> Past Hackdays </h1>
-			<h4> <%= render @past_hackdays if !@past_hackdays.nil? %> </h4>
-		</div>
-		
-	</div>
+  <div class = "row">
+    <!-- row for past hackday -->
+    <div class = "col-md-6 col-md-offset-3">
+      <h1> Past Hackdays </h1>
+      <h4> <%= render @past_hackdays if !@past_hackdays.nil? %> </h4>
+    </div>
+    
+  </div>
 </div>

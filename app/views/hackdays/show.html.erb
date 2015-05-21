@@ -2,13 +2,13 @@
 
 <h1> <%= "Hackday: " + @hackday.title %>
 <div class = "row">
-	<% unless @hackday.closed? %>
-		<%= render 'project_form' %>
-		<%= form_for(@hackday) do |f| %>
-			<%= hidden_field_tag :id, @hackday.id %>
-			<%= f.submit "Close votes", class: "btn btn-success" %>
-		<% end %>
-	<% end %> 
-	
-	<%= render 'projects' %>
+  <% unless @hackday.closed? %>
+    <%= render 'project_form' %>
+    <%= form_for(@hackday) do |f| %>
+      <%= hidden_field_tag :id, @hackday.id %>
+      <%= f.submit "Close votes", class: "btn btn-success" %>
+    <% end %>
+  <% end %> 
+  
+  <%= render 'projects' %>
 </div>

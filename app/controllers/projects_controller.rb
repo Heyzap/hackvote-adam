@@ -1,41 +1,41 @@
 class ProjectsController < ApplicationController
 
-	MAX_VOTES = 3
+  MAX_VOTES = 3
 
-	def create
-		@hackday = Hackday.find_by_id(params[:project][:hackday_id].to_i)
-		@project = @hackday.projects.build(project_params)
-		if @project.save
-			flash.now[:success] = "Project created!"
-		else
-			flash.now[:danger] = "Project failed to create"
-		end
-		redirect_to @hackday
-	end
+  def create
+    @hackday = Hackday.find_by_id(params[:project][:hackday_id].to_i)
+    @project = @hackday.projects.build(project_params)
+    if @project.save
+      flash.now[:success] = "Project created!"
+    else
+      flash.now[:danger] = "Project failed to create"
+    end
+    redirect_to @hackday
+  end
 
-	def update
-		@project = Project.find_by_id(params[:id].to_i) 
-		@hackday = @project.hackday
+  def update
+    @project = Project.find_by_id(params[:id].to_i) 
+    @hackday = @project.hackday
 
-		if @hackday.closed?
-				flash[:danger] = "Hackday has already closed"
-		else
-			current_votes = cookies[:"current_votes_#{@project.hackday_id}"].to_i
-			if (current_votes >= MAX_VOTES)
-				flash[:danger] = "No votes lefted"
-			else
-				flash[:success] = "Vote succeed"
-				cookies[:"current_votes_#{@project.hackday_id}"] = current_votes + 1
-				@project.vote
-				@project.save
-			end
-		end
-		redirect_to @hackday
-	end
+    if @hackday.closed?
+        flash[:danger] = "Hackday has already closed"
+    else
+      current_votes = cookies[:"current_votes_#{@project.hackday_id}"].to_i
+      if (current_votes >= MAX_VOTES)
+        flash[:danger] = "No votes lefted"
+      else
+        flash[:success] = "Vote succeed"
+        cookies[:"current_votes_#{@project.hackday_id}"] = current_votes + 1
+        @project.vote
+        @project.save
+      end
+    end
+    redirect_to @hackday
+  end
 
-	private
-		def project_params
-			return params.require(:project).permit(:name, :creators)
-		end
+  private
+    def project_params
+      return params.require(:project).permit(:name, :creators)
+    end
 
 end

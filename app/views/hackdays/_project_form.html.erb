@@ -1,13 +1,13 @@
 <h3> add new project </h3>
-	<div class="row"> 
-		<%= form_for(@new_project) do |f| %>
-			<%= f.label :name %>
+  <div class="row"> 
+    <%= form_for(@new_project) do |f| %>
+      <%= f.label :name %>
       <%= f.text_field :name, class: 'form-control' %>
       <%= f.label :creators %>
       <%= f.text_field :creators, class: 'form-control' %>
       <%= f.hidden_field :hackday_id, :value => @hackday.id %>     
       <%= f.hidden_field :votes, :value => 0 %>      
       <%= f.submit "Create new project", class: "btn btn-primary" %>
-		<% end %>
-	</div>
-	
+    <% end %>
+  </div>
+  
