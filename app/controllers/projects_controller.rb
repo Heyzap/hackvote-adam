@@ -18,7 +18,7 @@ class ProjectsController < ApplicationController
     @hackday = @project.hackday
 
     if @hackday.closed?
-        flash[:errros] = "Hackday has already closed"
+      flash[:errros] = "Hackday has already closed"
     else
       current_votes = sessions[:"current_votes_#{@project.hackday_id}"].to_i
       if (current_votes >= MAX_VOTES)
