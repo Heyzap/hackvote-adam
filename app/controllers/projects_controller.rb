@@ -20,14 +20,14 @@ class ProjectsController < ApplicationController
     if @hackday.closed?
       flash[:errros] = "Hackday has already closed"
     else
-      current_votes = sessions[:"current_votes_#{@project.hackday_id}"].to_i
+      current_votes = session[:"current_votes_#{@project.hackday_id}"].to_i
       if (current_votes >= MAX_VOTES)
         flash[:errors] = "No votes lefted"
       else
         @project.vote
         if @project.save
           flash[:success] = "Vote succeed"
-          sessions[:"current_votes_#{@project.hackday_id}"] = current_votes + 1
+          session[:"current_votes_#{@project.hackday_id}"] = current_votes + 1
         else
           flash[:errors] = @project.errors.full_messages
         end

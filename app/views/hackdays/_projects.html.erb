@@ -2,13 +2,13 @@
     <!-- row for past hackday -->
     <div class = "col-md-6 col-md-offset-3">
       <h1> Projects </h1>
-      <h4> votes left: <%= (3-sessions[:"current_votes_#{@hackday.id}"].to_i)  %> </h4>
+      <h4> votes left: <%= (3-session[:"current_votes_#{@hackday.id}"].to_i)  %> </h4>
       <% @projects.each do |project| %>
         <h4> <%= project.name %></h4>
         <% if @hackday.closed?%>
           <h4> votes: <%= project.votes %>
         <% else %>
-          <% if sessions[:"current_votes_#{@hackday.id}"].to_i < ProjectsController::MAX_VOTES %>
+          <% if session[:"current_votes_#{@hackday.id}"].to_i < ProjectsController::MAX_VOTES %>
             <%= form_for(project) do |f| %>
               <%= f.submit "Vote", class: "btn" %>
             <% end %>
