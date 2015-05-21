@@ -3,7 +3,7 @@ class ProjectsController < ApplicationController
 	MAX_VOTES = 3
 
 	def create
-		@hackday = Hackday.find_by(id: params[:project][:hackday_id].to_i)
+		@hackday = Hackday.find_by_id(params[:project][:hackday_id].to_i)
 		@project = @hackday.projects.build(project_params)
 		if @project.save
 			flash.now[:success] = "Project created!"
@@ -14,7 +14,7 @@ class ProjectsController < ApplicationController
 	end
 
 	def update
-		@project = Project.find_by(id: params[:id].to_i) 
+		@project = Project.find_by_id(params[:id].to_i) 
 		@hackday = @project.hackday
 
 		if @hackday.closed?
@@ -29,14 +29,8 @@ class ProjectsController < ApplicationController
 				@project.vote
 				@project.save
 			end
-			
 		end
 		redirect_to @hackday
-	end
-
-
-	def edit
-	
 	end
 
 	private

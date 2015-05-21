@@ -1,9 +1,7 @@
 require 'test_helper'
 
 class HackdaysControllerTest < ActionController::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+
   def setup
   	@may = hackdays(:may)
   	@june = hackdays(:june)

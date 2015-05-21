@@ -1,9 +1,6 @@
 require 'test_helper'
 
 class VoteProjectTest < ActionDispatch::IntegrationTest
-  # test "the truth" do
-  #   assert true
-  # end
 
   def setup
   	@may = hackdays(:may)
