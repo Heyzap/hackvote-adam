@@ -3,7 +3,7 @@ class CreateProjects < ActiveRecord::Migration
     create_table :projects do |t|
       t.string :name
       t.string :creator
-      t.integer :votes
+      t.integer :votes, :default => 0
 
       t.timestamps null: false
     end

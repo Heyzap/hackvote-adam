@@ -11,24 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150520224453) do
+ActiveRecord::Schema.define(version: 20150521003136) do
 
   create_table "hackdays", force: :cascade do |t|
     t.string   "title"
     t.boolean  "closed",     default: false
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
-    t.integer  "project_id"
   end
-
-  add_index "hackdays", ["project_id"], name: "index_hackdays_on_project_id"
 
   create_table "projects", force: :cascade do |t|
     t.string   "name"
     t.string   "creators"
-    t.integer  "votes"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "votes",      default: 0
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "hackday_id"
   end
+
+  add_index "projects", ["hackday_id"], name: "index_projects_on_hackday_id"
 
 end

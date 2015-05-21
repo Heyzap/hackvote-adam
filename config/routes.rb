@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root  'hackdays#index'
   resources :hackdays, only: [:create, :index, :show, :update]
+  resources :projects, only: [:create, :update]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

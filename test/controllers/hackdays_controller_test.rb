@@ -15,15 +15,18 @@ class HackdaysControllerTest < ActionController::TestCase
   end
 
   test "should get show" do
-
-
   	get :show, id: @may
   	assert_response :success
-  	debugger
   	get :show, id: @june
   	assert_response :success
-  	
   end
+
+  test "should redirect to root if hacday alread closed" do
+  	patch :update, id: @june, hackday: {title: "asdf", closed: false}
+  	assert_not flash.empty?
+  	assert_redirected_to root_url
+  end
+
 
 
 
