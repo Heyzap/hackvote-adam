@@ -1,22 +1,14 @@
 require 'test_helper'
 
 class AddHackdayTest < ActionDispatch::IntegrationTest
-  # test "the truth" do
-  #   assert true
-  # end
 
-  def setup
-  	
-  end
-
-
-  test "need a title" do
+  test "hackday needs a title" do
   	@new = Hackday.new(title: "")
   	@new.save
   	assert_not(@new.valid?)
   end
 
-  
+
   test "add hackday" do
   	get root_url
   	assert_template 'hackdays/index'

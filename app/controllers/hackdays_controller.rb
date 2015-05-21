@@ -20,7 +20,7 @@ class HackdaysController < ApplicationController
 	end
 
 	def show
-		@hackday = Hackday.find_by(id: params[:id].to_i)
+		@hackday = Hackday.find_by_id(params[:id].to_i)
 		unless @hackday.closed?
 			@new_project = Project.new
 		end
@@ -28,7 +28,7 @@ class HackdaysController < ApplicationController
 	end
 
 	def update
-		@hackday = Hackday.find_by(id: params[:id].to_i)
+		@hackday = Hackday.find_by_id(params[:id].to_i)
 		if @hackday.closed?
 			flash[:danger] = "Hackday has already closed"
 			redirect_to(root_url)
@@ -41,7 +41,7 @@ class HackdaysController < ApplicationController
 
 	private
 		def hackday_params
-			params.require(:hackday).permit(:id, :title)	
+			params.require(:hackday).permit(:title)	
 		end
 
 
