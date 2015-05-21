@@ -1,4 +1,5 @@
 class ProjectsController < ApplicationController
+	before_action :hackday_is_open
 	MAX_VOTES = 3
 
 	def create
@@ -15,7 +16,7 @@ class ProjectsController < ApplicationController
 	def update
 		@project = Project.find_by(id: params[:id].to_i) 
 		@hackday = @project.hackday
-		
+
 		current_votes = cookies[:"current_votes_#{@project.hackday_id}"].to_i
 		if (current_votes >= MAX_VOTES)
 			flash[:danger] = "No votes lefted"
@@ -31,6 +32,13 @@ class ProjectsController < ApplicationController
 	private
 		def project_params
 			return params.require(:project).permit(:name, :creators)
-			
+		end
+
+		def hackday_is_open
+			@hackday = Hackday.find_by(id: params[:project][:hackday_id].to_i)
+			if @hackday.closed?
+				flash[:danger] = "Hackday has already closed"
+				redirect_to @hackday
+			end
 		end
 end

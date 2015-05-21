@@ -1,11 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  creators: MyString
-  votes: 1
+p1:
+  name: "p1"
+  creators: "p1"
+  hackday: june
+  votes: 0
 
-two:
-  name: MyString
-  creators: MyString
-  votes: 1
+p2:
+  name: "p2"
+  creators: "p2"
+  votes: 0
+  hackday: may

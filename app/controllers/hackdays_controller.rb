@@ -2,8 +2,14 @@ class HackdaysController < ApplicationController
 	
 	def create
 		@hackday = Hackday.new(hackday_params)
-		@hackday.save
-		redirect_to @hackday
+		if @hackday.save
+			flash[:success] = "successfully added a hackday"
+			redirect_to @hackday
+		else
+			flash[:danger] = "failed to add a hackday"
+			redirect_to root_url
+		end
+
 	end
 
 	def index

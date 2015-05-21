@@ -8,12 +8,10 @@
 				<% if @hackday.closed?%>
 					<h4> votes: <%= project.votes %>
 				<% else %>
-
 					<% if cookies[:"current_votes_#{@hackday.id}"].to_i < ProjectsController::MAX_VOTES %>
 						<%= form_for(project) do |f| %>
 						  <%= f.submit "Vote", class: "btn" %>
 						<% end %>
-						
 					<% end %>
 				<% end %>
 			<% end %>
