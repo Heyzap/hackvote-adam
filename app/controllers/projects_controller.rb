@@ -8,7 +8,7 @@ class ProjectsController < ApplicationController
     if @project.save
       flash.now[:success] = "Project created!"
     else
-      flash.now[:danger] = "Project failed to create"
+      flash.now[:errors] = @project.errors.full_messages
     end
     redirect_to @hackday
   end
@@ -18,16 +18,20 @@ class ProjectsController < ApplicationController
     @hackday = @project.hackday
 
     if @hackday.closed?
-        flash[:danger] = "Hackday has already closed"
+        flash[:errros] = "Hackday has already closed"
     else
-      current_votes = cookies[:"current_votes_#{@project.hackday_id}"].to_i
+      current_votes = sessions[:"current_votes_#{@project.hackday_id}"].to_i
       if (current_votes >= MAX_VOTES)
-        flash[:danger] = "No votes lefted"
+        flash[:errors] = "No votes lefted"
       else
-        flash[:success] = "Vote succeed"
-        cookies[:"current_votes_#{@project.hackday_id}"] = current_votes + 1
         @project.vote
-        @project.save
+        if @project.save
+          flash[:success] = "Vote succeed"
+          sessions[:"current_votes_#{@project.hackday_id}"] = current_votes + 1
+        else
+          flash[:errors] = @project.errors.full_messages
+        end
+
       end
     end
     redirect_to @hackday

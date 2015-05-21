@@ -6,8 +6,8 @@ class HackdaysController < ApplicationController
       flash[:success] = "successfully added a hackday"
       redirect_to @hackday
     else
-      flash[:danger] = "failed to add a hackday"
-      redirect_to root_url
+      flash[:errors] = @hackday.errors.full_messages
+      render 'index'
     end
 
   end
@@ -16,7 +16,7 @@ class HackdaysController < ApplicationController
     @new_hackday = Hackday.new
     @hackdays = Hackday.all
     @current_hackday = @hackdays.last #most recent one  
-    @past_hackdays = @hackdays.first (@hackdays.size - 1)
+    @past_hackdays = @hackdays[0...-1]
   end
 
   def show
@@ -30,8 +30,8 @@ class HackdaysController < ApplicationController
   def update
     @hackday = Hackday.find_by_id(params[:id].to_i)
     if @hackday.closed?
-      flash[:danger] = "Hackday has already closed"
-      redirect_to(root_url)
+      flash[:errors] = "Hackday has already closed"
+      redirect_to @hackday
     else
       @hackday.close
       @hackday.save

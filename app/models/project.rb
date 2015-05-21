@@ -1,8 +1,8 @@
 class Project < ActiveRecord::Base
   belongs_to :hackday
 
-  validates :creators, presence: :true
-  validates :name, presence: :true
+  validates :creators, presence: :true, length: {maximum: 80}
+  validates :name, presence: :true, length: {maximum: 80}
   validate :hackday_is_open
 
 
